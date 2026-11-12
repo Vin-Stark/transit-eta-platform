@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: collector
+  datasource:
+    url: jdbc:postgresql://localhost:5432/transit_eta
+    username: transit
+    password: transit
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+
+transit:
+  gtfs-rt:
+    poll-interval-ms: 30000
+    feeds: []
+    # Example feed entry — uncomment and fill in a real GTFS-RT feed URL.
+    # Many agencies publish these without a key; some (e.g. 511.org) require
+    # one in a header. See collector/README.md for how to find one.
+    #
+    # feeds:
+    #   - name: vehicle_positions
+    #     url: https://example-agency.org/gtfs-rt/vehicle-positions
+    #     api-key-header: Authorization
+    #     api-key-value: ${GTFS_RT_API_KEY:}
+    #   - name: trip_updates
+    #     url: https://example-agency.org/gtfs-rt/trip-updates
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
